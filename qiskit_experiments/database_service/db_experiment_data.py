@@ -15,7 +15,7 @@
 import logging
 import uuid
 import json
-from typing import Optional, List, Any, Union, Callable, Dict, TYPE_CHECKING
+from typing import Optional, List, Any, Union, Callable, Dict
 import copy
 from concurrent import futures
 from functools import wraps
@@ -674,10 +674,6 @@ class DbExperimentDataV1(DbExperimentData):
 
         Note:
             Depending on the amount of data, this operation could take a while.
-
-        Args:
-            service: Experiment service to be used to save the data.
-                If ``None``, the provider used to submit jobs will be used.
         """
         # TODO - track changes
         if not self._service:
