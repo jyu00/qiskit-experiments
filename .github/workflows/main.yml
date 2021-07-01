@@ -1,9 +1,5 @@
 name: Tests
-on:
-  push:
-    branches: [ main, 'stable/*' ]
-  pull_request:
-    branches: [ main, 'stable/*' ]
+on: push
 jobs:
   tests:
     name: tests-python${{ matrix.python-version }}-${{ matrix.os }}
