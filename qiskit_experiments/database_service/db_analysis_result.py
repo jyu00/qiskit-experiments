@@ -13,13 +13,14 @@
 """Analysis result abstract interface."""
 
 import logging
-from typing import Optional, List, Union, Dict, Callable, Any
+from typing import Optional, List, Union, Dict, Callable, Any, TYPE_CHECKING
 import uuid
 import json
 import copy
 from functools import wraps
 
-import qiskit_experiments.database_service as database_service  # pylint: disable=unused-import
+if TYPE_CHECKING:
+    import qiskit_experiments.database_service as database_service  # pylint: disable=unused-import
 from .json import NumpyEncoder, NumpyDecoder
 from .utils import save_data, qiskit_version
 from .exceptions import DbExperimentDataError

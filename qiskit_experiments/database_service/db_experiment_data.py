@@ -15,7 +15,7 @@
 import logging
 import uuid
 import json
-from typing import Optional, List, Any, Union, Callable, Dict
+from typing import Optional, List, Any, Union, Callable, Dict, TYPE_CHECKING
 import copy
 from concurrent import futures
 from functools import wraps
@@ -30,7 +30,8 @@ from qiskit.providers.jobstatus import JobStatus, JOB_FINAL_STATES
 from qiskit.providers.exceptions import JobError
 from qiskit.visualization import HAS_MATPLOTLIB
 
-import qiskit_experiments.database_service as database_service  # pylint: disable=unused-import
+if TYPE_CHECKING:
+    import qiskit_experiments.database_service as database_service  # pylint: disable=unused-import
 from .exceptions import DbExperimentDataError, DbExperimentEntryNotFound, DbExperimentEntryExists
 from .db_analysis_result import DbAnalysisResultV1 as DbAnalysisResult
 from .json import NumpyEncoder, NumpyDecoder
