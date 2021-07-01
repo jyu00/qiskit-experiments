@@ -30,8 +30,7 @@ from qiskit.providers.jobstatus import JobStatus, JOB_FINAL_STATES
 from qiskit.providers.exceptions import JobError
 from qiskit.visualization import HAS_MATPLOTLIB
 
-if TYPE_CHECKING:
-    import qiskit_experiments.database_service as database_service  # pylint: disable=unused-import
+from .database_service import DatabaseServiceV1
 from .exceptions import DbExperimentDataError, DbExperimentEntryNotFound, DbExperimentEntryExists
 from .db_analysis_result import DbAnalysisResultV1 as DbAnalysisResult
 from .json import NumpyEncoder, NumpyDecoder
@@ -990,7 +989,7 @@ class DbExperimentDataV1(DbExperimentData):
             self.save()
 
     @property
-    def service(self) -> Optional["database_service.DatabaseServiceV1"]:
+    def service(self) -> Optional[DatabaseServiceV1]:
         """Return the database service.
 
         Returns:
@@ -999,7 +998,7 @@ class DbExperimentDataV1(DbExperimentData):
         return self._service
 
     @service.setter
-    def service(self, service: "database_service.DatabaseServiceV1") -> None:
+    def service(self, service: DatabaseServiceV1) -> None:
         """Set the service to be used for storing experiment data.
 
         Args:
