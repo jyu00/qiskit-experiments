@@ -22,6 +22,7 @@ from qiskit import transpile, assemble, QuantumCircuit
 from qiskit.providers import BaseJob
 from qiskit.providers.backend import Backend
 from qiskit.providers.basebackend import BaseBackend as LegacyBackend
+from qiskit.providers.ibmq.ibmqbackend import IBMQBackend
 from qiskit.test.mock import FakeBackend
 from qiskit.exceptions import QiskitError
 from qiskit.qobj.utils import MeasLevel
@@ -131,6 +132,8 @@ class BaseExperiment(ABC):
         if isinstance(backend, LegacyBackend):
             qobj = assemble(circuits, backend=backend, **run_opts)
             job = backend.run(qobj)
+        elif isinstance(backend, IBMQBackend):
+            job = backend.run(circuits, job_name=experiment_data.experiment_id, **run_opts)
         else:
             job = backend.run(circuits, **run_opts)
 
